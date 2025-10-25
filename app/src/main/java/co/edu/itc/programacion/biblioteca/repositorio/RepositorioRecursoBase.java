@@ -48,4 +48,15 @@ public abstract class RepositorioRecursoBase<T extends Recurso> implements Repos
     public List<T> listarTodos() {
         return new ArrayList<>(listaRecurso);
     }
+
+    @Override
+    public List<T> buscarPorCriterio(String criterio) {
+        List<T> resultados = new ArrayList<>();
+        for (T recurso : listaRecurso) {
+            if (recurso.toString().toLowerCase().contains(criterio.toLowerCase())) {
+                resultados.add(recurso);
+            }
+        }
+        return resultados;
+    }
 }

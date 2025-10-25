@@ -16,8 +16,8 @@ public class RepositorioPeriodico extends RepositorioRecursoBase<Periodico> {
         String lower = criterio.toLowerCase();
 
         for (Periodico p : listaRecurso) {
-            if ((p.getEditorial() != null && p.getEditorial().toLowerCase().contains(lower)) ||
-                (p.getNombre() != null && p.getNombre().toLowerCase().contains(lower))) {
+            if ((p.getNombre() != null && p.getNombre().toLowerCase().contains(lower)) ||
+                (p.getEditorial() != null && p.getEditorial().toLowerCase().contains(lower))) {
                 resultados.add(p);
             }
         }

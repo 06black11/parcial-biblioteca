@@ -16,10 +16,10 @@ public class RepositorioComputador extends RepositorioRecursoBase<Computador> {
         String lower = criterio.toLowerCase();
 
         for (Computador c : listaRecurso) {
-            if ((c.getMarca() != null && c.getMarca().toLowerCase().contains(lower)) ||
+            if ((c.getNombre() != null && c.getNombre().toLowerCase().contains(lower)) ||
+                (c.getMarca() != null && c.getMarca().toLowerCase().contains(lower)) ||
                 (c.getModelo() != null && c.getModelo().toLowerCase().contains(lower)) ||
-                (c.getNombre() != null && c.getNombre().toLowerCase().contains(lower)) ||
-                (c.getTipo() != null && c.getTipo().name().toLowerCase().contains(lower))) {
+                (c.getTipo() != null && c.getTipo().toString().toLowerCase().contains(lower))) {
                 resultados.add(c);
             }
         }
