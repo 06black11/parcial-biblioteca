@@ -1,26 +1,18 @@
 package co.edu.itc.programacion.biblioteca.repositorio;
 
-import co.edu.itc.programacion.biblioteca.modelo.Periodico;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioPeriodico extends RepositorioRecursoBase<Periodico> {
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-    public RepositorioPeriodico() {
-        super();
-    }
+import co.edu.itc.programacion.biblioteca.modelo.Periodico;
 
-    @Override
-    public List<Periodico> buscarPorCriterio(String criterio) {
-        List<Periodico> resultados = new ArrayList<>();
-        String lower = criterio.toLowerCase();
+@Repository
+public interface RepositorioPeriodico extends CrudRepository<Periodico, Integer> {
 
-        for (Periodico p : listaRecurso) {
-            if ((p.getNombre() != null && p.getNombre().toLowerCase().contains(lower)) ||
-                (p.getEditorial() != null && p.getEditorial().toLowerCase().contains(lower))) {
-                resultados.add(p);
-            }
-        }
-        return resultados;
-    }
+    @Query("SELECT * FROM PERIODICO WHERE LOWER(NOMBRE) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(EDITORIAL) LIKE LOWER(CONCAT('%', :criterio, '%'))")
+    List<Periodico> buscarPorCriterio(@Param("criterio") String criterio);
 }

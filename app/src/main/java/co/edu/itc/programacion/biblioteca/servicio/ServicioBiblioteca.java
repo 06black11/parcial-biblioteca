@@ -1,84 +1,91 @@
 package co.edu.itc.programacion.biblioteca.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import co.edu.itc.programacion.biblioteca.modelo.Recurso;
-import co.edu.itc.programacion.biblioteca.modelo.Libro;
-import co.edu.itc.programacion.biblioteca.modelo.Periodico;
-import co.edu.itc.programacion.biblioteca.modelo.Computador;
-import co.edu.itc.programacion.biblioteca.repositorio.RepositorioRecurso;
-import co.edu.itc.programacion.biblioteca.repositorio.RepositorioLibro;
-import co.edu.itc.programacion.biblioteca.repositorio.RepositorioPeriodico;
-import co.edu.itc.programacion.biblioteca.repositorio.RepositorioComputador;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ServicioBiblioteca<T> {
-    private RepositorioRecurso<Libro> repositorioLibro = new RepositorioLibro();
-    private RepositorioRecurso<Periodico> repositorioPeriodico = new RepositorioPeriodico();
-    private RepositorioRecurso<Computador> repositorioComputador = new RepositorioComputador();
+import co.edu.itc.programacion.biblioteca.modelo.*;
+import co.edu.itc.programacion.biblioteca.repositorio.*;
 
-    public ServicioBiblioteca() {}
+@Service
+public class ServicioBiblioteca {
 
-   
+    @Autowired
+    private RepositorioLibro repositorioLibro;
+
+    @Autowired
+    private RepositorioPeriodico repositorioPeriodico;
+
+    @Autowired
+    private RepositorioComputador repositorioComputador;
+
+    
     public Recurso agregar(Recurso recurso) {
         if (recurso instanceof Libro) {
-            return repositorioLibro.guardar((Libro) recurso);
+            return repositorioLibro.save((Libro) recurso);
         } else if (recurso instanceof Periodico) {
-            return repositorioPeriodico.guardar((Periodico) recurso);
+            return repositorioPeriodico.save((Periodico) recurso);
         } else if (recurso instanceof Computador) {
-            return repositorioComputador.guardar((Computador) recurso);
+            return repositorioComputador.save((Computador) recurso);
         }
         return null;
     }
 
-    public Recurso modificar(Integer id, Recurso recurso) {
+   
+    public Recurso modificar(Recurso recurso) {
         if (recurso instanceof Libro) {
-            return repositorioLibro.actualizar(id, (Libro) recurso);
+            return repositorioLibro.save((Libro) recurso);
         } else if (recurso instanceof Periodico) {
-            return repositorioPeriodico.actualizar(id, (Periodico) recurso);
+            return repositorioPeriodico.save((Periodico) recurso);
         } else if (recurso instanceof Computador) {
-            return repositorioComputador.actualizar(id, (Computador) recurso);
+            return repositorioComputador.save((Computador) recurso);
         }
         return null;
     }
 
-    public boolean eliminarLibro(Integer id) {
-        return repositorioLibro.eliminar(id);
+   
+    public void eliminarLibro(Integer id) {
+        repositorioLibro.deleteById(id);
     }
 
-    public boolean eliminarPeriodico(Integer id) {
-        return repositorioPeriodico.eliminar(id);
+    public void eliminarPeriodico(Integer id) {
+        repositorioPeriodico.deleteById(id);
     }
 
-    public boolean eliminarComputador(Integer id) {
-        return repositorioComputador.eliminar(id);
+    public void eliminarComputador(Integer id) {
+        repositorioComputador.deleteById(id);
     }
 
+    
     public List<Recurso> listarTodos() {
-        
-        List<Recurso> recursos = new java.util.ArrayList<>();
-        recursos.addAll(repositorioLibro.listarTodos());
-        recursos.addAll(repositorioPeriodico.listarTodos());
-        recursos.addAll(repositorioComputador.listarTodos());
+        List<Recurso> recursos = new ArrayList<>();
+        repositorioLibro.findAll().forEach(recursos::add);
+        repositorioPeriodico.findAll().forEach(recursos::add);
+        repositorioComputador.findAll().forEach(recursos::add);
         return recursos;
     }
 
+    
     public List<Recurso> buscarPorCriterio(String criterio) {
-        List<Recurso> resultados = new java.util.ArrayList<>();
+        List<Recurso> resultados = new ArrayList<>();
         resultados.addAll(repositorioLibro.buscarPorCriterio(criterio));
         resultados.addAll(repositorioPeriodico.buscarPorCriterio(criterio));
         resultados.addAll(repositorioComputador.buscarPorCriterio(criterio));
         return resultados;
     }
 
+    
     public Libro obtenerLibro(Integer id) {
-        return repositorioLibro.obtener(id);
+        return repositorioLibro.findById(id).orElse(null);
     }
 
     public Periodico obtenerPeriodico(Integer id) {
-        return repositorioPeriodico.obtener(id);
+        return repositorioPeriodico.findById(id).orElse(null);
     }
 
     public Computador obtenerComputador(Integer id) {
-        return repositorioComputador.obtener(id);
+        return repositorioComputador.findById(id).orElse(null);
     }
 }

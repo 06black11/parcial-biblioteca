@@ -1,24 +1,62 @@
 package co.edu.itc.programacion.biblioteca.modelo;
 
-public class Libro extends Recurso {
-    private String titulo;
-    private String autor;
-    private int anio;
-    private String isbn;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-    public Libro(Integer id, String nombre, String autor, int anio, String isbn) {
-        super(id, nombre); 
-        this.autor = autor;
-        this.anio = anio;
-        this.isbn = isbn;
-    }
+@Table("LIBRO")
+public class Libro extends Recurso {
+
+    @Column("AUTOR")
+    private String autor;
+
+    @Column("ANIO")
+    private Integer anio;
+
+    @Column("ISBN")
+    private String isbn;
 
     public Libro() {
         super();
     }
 
-    public String getTitulo() { return titulo; }
-    public String getAutor() { return autor; }
-    public int getAnio() { return anio; }
-    public String getIsbn() { return isbn; }
+    public Libro(Integer id, String nombre, String autor, Integer anio, String isbn) {
+        super(id, nombre);
+        this.autor = autor;
+        this.anio = anio;
+        this.isbn = isbn;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{id=" + getId() + 
+               ", nombre='" + getNombre() + 
+               "', autor='" + autor + 
+               "', año=" + anio + 
+               ", isbn='" + isbn + 
+               "', fechaRegistro=" + getFechaRegistro() + "}";
+    }
 }

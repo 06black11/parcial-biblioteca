@@ -1,28 +1,20 @@
 package co.edu.itc.programacion.biblioteca.repositorio;
 
-import co.edu.itc.programacion.biblioteca.modelo.Computador;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioComputador extends RepositorioRecursoBase<Computador> {
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-    public RepositorioComputador() {
-        super();
-    }
+import co.edu.itc.programacion.biblioteca.modelo.Computador;
 
-    @Override
-    public List<Computador> buscarPorCriterio(String criterio) {
-        List<Computador> resultados = new ArrayList<>();
-        String lower = criterio.toLowerCase();
+@Repository
+public interface RepositorioComputador extends CrudRepository<Computador, Integer> {
 
-        for (Computador c : listaRecurso) {
-            if ((c.getNombre() != null && c.getNombre().toLowerCase().contains(lower)) ||
-                (c.getMarca() != null && c.getMarca().toLowerCase().contains(lower)) ||
-                (c.getModelo() != null && c.getModelo().toLowerCase().contains(lower)) ||
-                (c.getTipo() != null && c.getTipo().toString().toLowerCase().contains(lower))) {
-                resultados.add(c);
-            }
-        }
-        return resultados;
-    }
+    @Query("SELECT * FROM COMPUTADOR WHERE LOWER(NOMBRE) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(MARCA) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(MODELO) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(TIPO) LIKE LOWER(CONCAT('%', :criterio, '%'))")
+    List<Computador> buscarPorCriterio(@Param("criterio") String criterio);
 }

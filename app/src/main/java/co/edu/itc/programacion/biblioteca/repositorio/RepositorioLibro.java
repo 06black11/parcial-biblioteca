@@ -1,27 +1,19 @@
 package co.edu.itc.programacion.biblioteca.repositorio;
 
-import co.edu.itc.programacion.biblioteca.modelo.Libro;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioLibro extends RepositorioRecursoBase<Libro> {
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-    public RepositorioLibro() {
-        super();
-    }
+import co.edu.itc.programacion.biblioteca.modelo.Libro;
 
-    @Override
-    public List<Libro> buscarPorCriterio(String criterio) {
-        List<Libro> resultados = new ArrayList<>();
-        String lower = criterio.toLowerCase();
+@Repository
+public interface RepositorioLibro extends CrudRepository<Libro, Integer> {
 
-        for (Libro l : listaRecurso) {
-            if ((l.getTitulo() != null && l.getTitulo().toLowerCase().contains(lower)) ||
-                (l.getAutor() != null && l.getAutor().toLowerCase().contains(lower)) ||
-                (l.getIsbn() != null && l.getIsbn().toLowerCase().contains(lower))) {
-                resultados.add(l);
-            }
-        }
-        return resultados;
-    }
+    @Query("SELECT * FROM LIBRO WHERE LOWER(NOMBRE) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(AUTOR) LIKE LOWER(CONCAT('%', :criterio, '%')) " +
+           "OR LOWER(ISBN) LIKE LOWER(CONCAT('%', :criterio, '%'))")
+    List<Libro> buscarPorCriterio(@Param("criterio") String criterio);
 }
