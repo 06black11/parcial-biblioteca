@@ -29,9 +29,10 @@ public class Main {
             
             System.out.println("\n=== Buscar por criterio: 'Tiempo' ===");
             servicio.buscarPorCriterio("Tiempo").forEach(System.out::println);
+            
+
 
             
-            servicio.eliminarComputador(4);
 
             System.out.println("\n=== Recursos después de eliminar ===");
             servicio.listarTodos().forEach(System.out::println);

@@ -9,7 +9,7 @@ public abstract class Recurso {
 
     @Id
     private Integer id;
-
+    @Column("NOMBRE")
     private String nombre;
 
     @Column("FECHAREGISTRO")
@@ -42,6 +42,11 @@ public abstract class Recurso {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+  public void setId(Integer id) {   
+        this.id = id;
+    }
+
 
     public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;

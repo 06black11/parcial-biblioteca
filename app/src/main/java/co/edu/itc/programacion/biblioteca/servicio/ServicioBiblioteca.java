@@ -34,11 +34,13 @@ public class ServicioBiblioteca {
     }
 
    
-    public Recurso modificar(Recurso recurso) {
+    public Recurso modificar(Integer id, Recurso recurso) { // paramentros integer de id del recurso y el nuevo recurso se debe modificar segun el id
+        
+       recurso.setId(id);  //  set id del libro que modificamos 
         if (recurso instanceof Libro) {
             return repositorioLibro.save((Libro) recurso);
         } else if (recurso instanceof Periodico) {
-            return repositorioPeriodico.save((Periodico) recurso);
+            return repositorioPeriodico.save((Periodico) recurso); 
         } else if (recurso instanceof Computador) {
             return repositorioComputador.save((Computador) recurso);
         }
