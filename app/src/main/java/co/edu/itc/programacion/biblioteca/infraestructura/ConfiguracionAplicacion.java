@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-
 @Configuration
 public class ConfiguracionAplicacion extends AbstractJdbcConfiguration {
 
@@ -31,10 +30,5 @@ public class ConfiguracionAplicacion extends AbstractJdbcConfiguration {
     @Bean
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
-    }
-
-    @Bean
-    public void inicializarBaseDatos(DataSource dataSource) {
-        System.out.println("inicio correctamente.");
     }
 }

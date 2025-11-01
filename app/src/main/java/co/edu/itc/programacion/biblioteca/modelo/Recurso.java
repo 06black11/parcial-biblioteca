@@ -9,6 +9,7 @@ public abstract class Recurso {
 
     @Id
     private Integer id;
+    
     @Column("NOMBRE")
     private String nombre;
 
