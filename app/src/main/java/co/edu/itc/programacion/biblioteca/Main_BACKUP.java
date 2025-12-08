@@ -5,7 +5,7 @@ import co.edu.itc.programacion.biblioteca.infraestructura.ConfiguracionAplicacio
 import co.edu.itc.programacion.biblioteca.servicio.ServicioBiblioteca;
 import co.edu.itc.programacion.biblioteca.modelo.*;
 
-public class Main {
+public class Main_BACKUP {
     public static void main(String[] args) {
 
         try (AnnotationConfigApplicationContext context =
@@ -13,7 +13,7 @@ public class Main {
 
             ServicioBiblioteca servicio = context.getBean(ServicioBiblioteca.class);
 
-            //aqui agregamos
+            // 1. Agregar recursos
             servicio.agregar(new Libro(1, "Satanás", "Mario Mendoza", 2002, "ISBN-001"));
             servicio.agregar(new Libro(2, "It", "Stephen King", 1986, "ISBN-002"));
             servicio.agregar(new Libro(3, "La torre oscura", "Stephen King", 1986, "ISBN-003"));
@@ -27,36 +27,39 @@ public class Main {
             servicio.agregar(new Computador(9, "Computador Lenovo", "Lenovo", "IdeaPad 3", "Portátil"));
 
 
-            //imprimimos los que ya existen
-
+            // 2. Listar todos los recursos
             System.out.println("\n=== 1. Recursos registrados ===");
             servicio.listarTodos().forEach(System.out::println);
 
-          // buscamos por un criterio 
-          System.out.println("\n=== 2. Buscar por criterio: 'torre' ===");
-         servicio.buscarPorCriterio("torre").forEach(System.out::println);
 
-          // modificar la primera coincidencia que aparezca 
-          System.out.println("\n=== 3. Modificar la primera coincidencia encontrada ===");
-          for (Recurso r : servicio.buscarPorCriterio("torre")) {
-          r.setNombre("La torre oscura (Edición especial)");
-          servicio.modificar(r.getId(), r);
-          break;
-}
+            // 3. Buscar por criterio 'torre'
+            System.out.println("\n=== 2. Buscar por criterio: 'torre' ===");
+            servicio.buscarPorCriterio("torre").forEach(System.out::println);
 
 
-            // aqui eliminamos
-            System.out.println("\n=== 4. Eliminar recurso con criterio: 'Q'hubo' ===");
+            // 4. Modificar la primera coincidencia
+            System.out.println("\n=== 3. Modificar la primera coincidencia encontrada ===");
+            for (Recurso r : servicio.buscarPorCriterio("torre")) {
+                r.setNombre("La torre oscura (Edición especial)");
+                servicio.modificar(r.getId(), r);
+                break;
+            }
 
-            Recurso recurso = servicio.buscarPorCriterio("Q'hubo").get(0);
-            System.out.println("Recurso eliminado: " + recurso);
-            servicio.eliminarPeriodico(recurso.getId());
+
+            // 5. Eliminar recurso por criterio Q'hubo
+            System.out.println("\n=== 4. Eliminar recurso con criterio: Q'hubo ===");
+
+            var resultados = servicio.buscarPorCriterio("Q'hubo");
+            if (!resultados.isEmpty()) {
+                Recurso recurso = resultados.get(0);
+                System.out.println("Recurso eliminado: " + recurso);
+                servicio.eliminarPeriodico(recurso.getId());
+            }
 
 
-            //aqui imprimimos los recursos finales
+            // 6. Listar recursos finales
             System.out.println("\n=== 5. Recursos finales ===");
             servicio.listarTodos().forEach(System.out::println);
         }
     }
 }
-

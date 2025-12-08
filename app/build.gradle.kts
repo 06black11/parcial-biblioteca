@@ -1,50 +1,42 @@
-
-
 plugins {
-    
-    application
-
-    
-    id("org.springframework.boot") version "3.3.0"
+    id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.5"
+    application
 }
 
 repositories {
-    
     mavenCentral()
 }
 
 dependencies {
-    
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 
-    
-    runtimeOnly("com.h2database:h2")
+    // --- SPRING WEB ---
+    implementation("org.springframework.boot:spring-boot-starter-web")
 
-   
-    implementation("org.springframework.boot:spring-boot-starter-logging")
+    // --- SPRING DATA JDBC ---
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
-    
-    implementation("com.google.guava:guava:33.2.0-jre")
+    // --- H2 DATABASE ---
+    implementation("com.h2database:h2:2.4.240")
 
-    
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // --- LOMBOK (opcional pero recomendado) ---
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // --- TEST ---
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 java {
     toolchain {
-       
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 application {
-   
-    mainClass = "co.edu.itc.programacion.biblioteca.Main"
+    mainClass = "co.edu.itc.programacion.biblioteca.BibliotecaApplication"
 }
 
 tasks.named<Test>("test") {
-   
     useJUnitPlatform()
 }

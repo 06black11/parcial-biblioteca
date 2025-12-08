@@ -1,7 +1,6 @@
 package co.edu.itc.programacion.biblioteca.infraestructura;
 
 import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -10,19 +9,18 @@ public class InicializadorBaseDatos {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public InicializadorBaseDatos(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         crearTablas();
     }
 
     private void crearTablas() {
+
         jdbcTemplate.execute("""
             CREATE TABLE IF NOT EXISTS LIBRO (
                 ID INT PRIMARY KEY,
                 NOMBRE VARCHAR(100),
                 FECHAREGISTRO TIMESTAMP,
-                TITULO VARCHAR(100),
                 AUTOR VARCHAR(100),
                 ANIO INT,
                 ISBN VARCHAR(50)
