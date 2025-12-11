@@ -9,19 +9,11 @@ repositories {
 }
 
 dependencies {
-
-    // --- SPRING WEB ---
     implementation("org.springframework.boot:spring-boot-starter-web")
-
-    // --- SPRING DATA JDBC ---
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
-
-    // --- H2 DATABASE ---
-    implementation("com.h2database:h2:2.4.240")
-
-    // --- LOMBOK (opcional pero recomendado) ---
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+    implementation("org.springframework:spring-context:6.1.0")
+    implementation("org.springframework:spring-jdbc:6.1.0")
+    implementation("org.springframework.data:spring-data-jdbc:3.3.0")
+    implementation("com.h2database:h2:2.2.224")
 
     // --- TEST ---
     testImplementation("org.springframework.boot:spring-boot-starter-test")

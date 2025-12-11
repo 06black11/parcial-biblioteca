@@ -1,23 +1,16 @@
 package co.edu.itc.programacion.biblioteca.modelo;
-
-import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
-@Table("PERIODICO")
+import org.springframework.data.relational.core.mapping.Column;
+@Table ("PERIODICO")
 public class Periodico extends Recurso {
-
-    @Column("EDITORIAL")
+    @Column ("EDITORIAL")
     private String editorial;
+    @Column ("ANIO")
+    private int anio;
 
-    @Column("ANIO")
-    private Integer anio;
-
-    public Periodico() {
-        super();
-    }
-
-    public Periodico(Integer id, String nombre, String editorial, Integer anio) {
-        super(id, nombre); 
+    public Periodico(Integer id, String nombre, String editorial, int anio) {
+        super(id, nombre);
         this.editorial = editorial;
         this.anio = anio;
     }
@@ -26,24 +19,12 @@ public class Periodico extends Recurso {
         return editorial;
     }
 
-    public Integer getAnio() {
+    public int getAnio() {
         return anio;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public void setAnio(Integer anio) {
-        this.anio = anio;
     }
 
     @Override
     public String toString() {
-        return "Periodico{id=" + getId() + 
-               ", nombre='" + getNombre() + 
-               "', editorial='" + editorial + 
-               "', año=" + anio + 
-               ", fechaRegistro=" + getFechaRegistro() + "}";
+        return super.toString() + ", editorial=" + editorial + ", anio=" + anio + "]";
     }
 }

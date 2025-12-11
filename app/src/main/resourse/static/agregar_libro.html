@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Libro</title>
+
+    <style>
+        /* Fondo general estilo neon */
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor principal centrado */
+        .contenedor {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Título neon */
+        h1 {
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
+            margin-bottom: 25px;
+        }
+
+        /* Tarjeta formulario */
+        .card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border: 2px solid #0ff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #0ff;
+        }
+
+        /* Grupo de inputs */
+        .grupo {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            text-shadow: 0 0 6px #fff;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            background: #111;
+            color: #0ff;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        /* Efecto neon al escribir */
+        input:focus {
+            border-color: #0ff;
+            box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
+        }
+
+        /* Botón Guardar */
+        .btn-guardar {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset, 0 0 12px #0ff;
+            transition: 0.3s;
+        }
+
+        .btn-guardar:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 25px #0ff, 0 0 30px #0ff inset;
+        }
+
+        /* Botón Volver */
+        .btn-volver {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        .btn-volver:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 20px #0ff, 0 0 30px #0ff inset;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Registrar Libro</h1>
+
+        <form id="formlibro" class="card">
+
+            <div class="grupo">
+                <label>Título:</label>
+                <input type="text" id="titulo" required>
+            </div>
+
+            <div class="grupo">
+                <label>Autor:</label>
+                <input type="text" id="autor" required>
+            </div>
+
+            <div class="grupo">
+                <label>Año:</label>
+                <input type="number" id="anio" required>
+            </div>
+
+            <div class="grupo">
+                <label>Género:</label>
+                <input type="text" id="genero" required>
+            </div>
+
+            <button type="submit" class="btn-guardar">Guardar Libro</button>
+            <a href="index.html" class="btn-volver">Volver</a>
+
+        </form>
+    </div>
+
+    <script src="js/formLibro.js"></script>
+
+</body>
+</html>

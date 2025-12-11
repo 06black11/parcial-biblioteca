@@ -1,33 +1,21 @@
 package co.edu.itc.programacion.biblioteca.modelo;
-
-import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.relational.core.mapping.Column;
 
+import java.time.LocalDate;
 
 public abstract class Recurso {
-
-    @Id
     private Integer id;
-    
-    @Column("NOMBRE")
     private String nombre;
-
-    @Column("FECHAREGISTRO")
-    private LocalDateTime fechaRegistro;
-
-    
-    public Recurso() {
-        this.fechaRegistro = LocalDateTime.now();
-    }
+    private LocalDate fechaRegistro;
 
     public Recurso(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.fechaRegistro = LocalDateTime.now();
+        this.fechaRegistro = LocalDate.now();
     }
 
- 
     public Integer getId() {
         return id;
     }
@@ -36,20 +24,14 @@ public abstract class Recurso {
         return nombre;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    
+
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-  public void setId(Integer id) {   
-        this.id = id;
-    }
-
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " [id=" + id + ", nombre=" + nombre + ", fechaRegistro=" + fechaRegistro;
     }
 }
