@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Computador</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #0ff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            text-shadow: 0 0 6px #fff;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            background: #111;
+            color: #0ff;
+            font-size: 15px;
+            outline: none;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #0ff;
+            box-shadow: 0 0 15px #0ff, 0 0 25px #0ff inset;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset, 0 0 10px #0ff;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 25px #0ff, 0 0 30px #0ff inset;
+        }
+
+        a {
+            display: block;
+            width: 200px;
+            text-align: center;
+            margin: 25px auto 0;
+            padding: 10px;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Registrar Computador</h1>
+
+<!-- 🔥 FORM CORREGIDO -->
+<form id="formcomputador">
+
+    <label>Nombre:</label>
+    <input type="text" id="nombre" required>
+
+    <label>Marca:</label>
+    <input type="text" id="marca" required>
+
+    <label>Modelo:</label>
+    <input type="text" id="modelo" required>
+
+    <button type="submit">Guardar Computador</button>
+</form>
+
+<a href="index.html">Volver al Inicio</a>
+
+<script src="js/formComputador.js"></script>
+
+</body>
+</html>

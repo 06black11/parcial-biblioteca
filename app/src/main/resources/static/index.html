@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca – Recursos</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
+        }
+
+        button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: 0.3s;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset, 0 0 10px #0ff;
+        }
+
+        button:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 20px #0ff, 0 0 30px #0ff inset;
+        }
+
+        .botones {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #0ff;
+            box-shadow: 0 0 20px #0ff;
+        }
+
+        th {
+            background: #111;
+            padding: 12px;
+            text-shadow: 0 0 8px #0ff;
+            border: 1px solid #0ff;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #0ff;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        tr:hover {
+            background: rgba(0, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Biblioteca Nocturna</h1>
+
+<div class="botones">
+    <button onclick="location.href='agregar_libro.html'">Agregar Libro</button>
+    <button onclick="location.href='agrgar_periodico.html'">Agregar Periódico</button>
+    <button onclick="location.href='agregar_computador.html'">Agregar Computador</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Fecha Registro</th> <!-- ✅ NUEVO -->
+            <th>Disponible</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tablaRecursos"></tbody>
+</table>
+
+<script src="js/index.js"></script>
+
+</body>
+</html>

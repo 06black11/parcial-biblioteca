@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Periódico</title>
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Título */
+        h1 {
+            text-align: center;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #08f;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor del formulario */
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #0ff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #0ff;
+        }
+
+        /* Labels e inputs */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 0 6px #fff;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            background: #111;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            outline: none;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        /* Efecto neon cuando escriben */
+        input:focus {
+            box-shadow: 0 0 20px #0ff, 0 0 30px #0ff inset;
+            border-color: #0ff;
+        }
+
+        /* Botón principal */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 30px #0ff, 0 0 40px #0ff inset;
+        }
+
+        
+        a {
+            display: block;
+            width: 200px;
+            text-align: center;
+            margin: 25px auto 0;
+            padding: 10px;
+            color: #0ff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            text-shadow: 0 0 8px #0ff;
+            box-shadow: 0 0 10px #0ff inset;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 25px #0ff, 0 0 35px #0ff inset;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Registrar Periódico</h1>
+
+    <form id="formperiodico">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label>Fecha de publicación:</label>
+        <input type="date" id="fecha" required>
+
+        <label>Editorial:</label>
+        <input type="text" id="editorial" required>
+
+        <button type="submit">Guardar Periódico</button>
+    </form>
+
+    <a href="index.html">Volver al Inicio</a>
+
+   
+    <script src="js/formPeriodico.js"></script>
+
+</body>
+</html>
