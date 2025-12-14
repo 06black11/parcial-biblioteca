@@ -26,7 +26,7 @@ java {
 }
 
 application {
-    mainClass = "co.edu.itc.programacion.biblioteca.BibliotecaApplication"
+    mainClass = "co.edu.itc.programacion.biblioteca.Main"
 }
 
 tasks.named<Test>("test") {

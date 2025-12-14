@@ -3,6 +3,7 @@ package co.edu.itc.programacion.biblioteca;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import co.edu.itc.programacion.biblioteca.servicio.ServicioBiblioteca;
 import co.edu.itc.programacion.biblioteca.modelo.*;
 
@@ -23,98 +24,83 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+
         System.out.println("1. AGREGANDO RECURSOS");
 
-        // 📚 LIBROS NUEVOS
-        servicio.agregarRecurso(new Libro(1, "El llamado de Cthulhu", "H. P. Lovecraft", 1928, "ISBN-HP001"));
-        servicio.agregarRecurso(new Libro(2, "En las montañas de la locura", "H. P. Lovecraft", 1936, "ISBN-HP002"));
-        servicio.agregarRecurso(new Libro(3, "La sombra sobre Innsmouth", "H. P. Lovecraft", 1931, "ISBN-HP003"));
-
-        // 📰 PERIÓDICOS NUEVOS
-        servicio.agregarRecurso(new Periodico(4, "El Colombiano", "Editorial Medellín", 2024));
-        servicio.agregarRecurso(new Periodico(5, "Semana", "Publicaciones Semana", 2023));
-        servicio.agregarRecurso(new Periodico(6, "El País", "Editorial Cali", 2022));
-
-        // 💻 COMPUTADORES NUEVOS
+        // 📚 LIBROS (ID = null → INSERT)
         servicio.agregarRecurso(
-                new Computador(7, "HP Victus 16", "HP", "Victus 16", TipoComputador.PORTATIL));
+                new Libro(null, "El llamado de Cthulhu", "H. P. Lovecraft", 1928, "ISBN-HP001"));
         servicio.agregarRecurso(
-                new Computador(8, "Lenovo Legion T5", "Lenovo", "Legion T5", TipoComputador.ESCRITORIO));
+                new Libro(null, "En las montañas de la locura", "H. P. Lovecraft", 1936, "ISBN-HP002"));
         servicio.agregarRecurso(
-                new Computador(9, "HP Pavilion 15", "HP", "Pavilion 15", TipoComputador.PORTATIL));
+                new Libro(null, "La sombra sobre Innsmouth", "H. P. Lovecraft", 1931, "ISBN-HP003"));
 
-        System.out.println("Recursos agregados exitosamente.");
+        // 📰 PERIÓDICOS
+        servicio.agregarRecurso(
+                new Periodico(null, "El Colombiano", "Editorial Medellín", 2024));
+        servicio.agregarRecurso(
+                new Periodico(null, "Semana", "Publicaciones Semana", 2023));
+        servicio.agregarRecurso(
+                new Periodico(null, "El País", "Editorial Cali", 2022));
 
+        // 💻 COMPUTADORES
+        servicio.agregarRecurso(
+                new Computador(null, "HP Victus 16", "HP", "Victus 16", TipoComputador.PORTATIL));
+        servicio.agregarRecurso(
+                new Computador(null, "Lenovo Legion T5", "Lenovo", "Legion T5", TipoComputador.ESCRITORIO));
+        servicio.agregarRecurso(
+                new Computador(null, "HP Pavilion 15", "HP", "Pavilion 15", TipoComputador.PORTATIL));
+
+        System.out.println("✅ Recursos agregados correctamente.");
+
+        // ================= BUSCAR =================
         System.out.println("\n2. BUSCANDO RECURSOS POR 'Tiempo'");
         String criterioBusqueda = "Tiempo";
-        List<Recurso> resultadosBusqueda = servicio.buscarPorCriterio(criterioBusqueda);
-        if (!resultadosBusqueda.isEmpty()) {
-            resultadosBusqueda.forEach(System.out::println);
+        List<Recurso> resultados = servicio.buscarPorCriterio(criterioBusqueda);
+
+        if (resultados.isEmpty()) {
+            System.out.println("No se encontraron resultados.");
         } else {
-            System.out.println("No se encontraron coincidencias para '" + criterioBusqueda + "'.");
+            resultados.forEach(System.out::println);
         }
 
+        // ================= ACTUALIZAR =================
         System.out.println("\n3. ACTUALIZANDO UN RECURSO");
-        if (!resultadosBusqueda.isEmpty()) {
-            Recurso recursoParaActualizar = resultadosBusqueda.get(0);
-            Recurso recursoActualizado;
 
-            if (recursoParaActualizar instanceof Periodico p) {
-                recursoActualizado = new Periodico(
+        if (!resultados.isEmpty()) {
+            Recurso r = resultados.get(0);
+            Recurso actualizado;
+
+            if (r instanceof Periodico p) {
+                actualizado = new Periodico(
                         p.getId(),
-                        "Diario El Tiempo - Modificado nueva edición",
+                        "Diario El Tiempo - Edición Modificada",
                         p.getEditorial(),
                         p.getAnio());
-            } else if (recursoParaActualizar instanceof Libro l) {
-                recursoActualizado = new Libro(
+            } else if (r instanceof Libro l) {
+                actualizado = new Libro(
                         l.getId(),
-                        "Diario El Tiempo - Modificado nueva edición",
+                        "Diario El Tiempo - Edición Modificada",
                         l.getAutor(),
                         l.getAnio(),
                         l.getIsbn());
-            } else if (recursoParaActualizar instanceof Computador c) {
-                recursoActualizado = new Computador(
+            } else if (r instanceof Computador c) {
+                actualizado = new Computador(
                         c.getId(),
-                        "Diario El Tiempo - Modificado nueva edición",
+                        "Diario El Tiempo - Edición Modificada",
                         c.getMarca(),
                         c.getModelo(),
                         c.getTipo());
             } else {
-                recursoActualizado = recursoParaActualizar;
+                actualizado = r;
             }
 
-            servicio.modificar(recursoParaActualizar.getId(), recursoActualizado);
-            System.out.println("Recurso con ID " + recursoParaActualizar.getId() + " actualizado.");
+            servicio.modificar(r.getId(), actualizado);
+            System.out.println("✅ Recurso actualizado correctamente.");
         }
 
-        System.out.println("\n4. ELIMINANDO UN RECURSO");
-        String criterioEliminar = "La Odisea";
-        List<Recurso> recursoAEliminar = servicio.buscarPorCriterio(criterioEliminar);
-        if (!recursoAEliminar.isEmpty()) {
-            Recurso recurso = recursoAEliminar.get(0);
-            boolean eliminado = false;
-            if (recurso instanceof Libro) {
-                eliminado = servicio.eliminarLibro(recurso.getId());
-            } else if (recurso instanceof Periodico) {
-                eliminado = servicio.eliminarPeriodico(recurso.getId());
-            } else if (recurso instanceof Computador) {
-                eliminado = servicio.eliminarComputador(recurso.getId());
-            }
-            if (eliminado) {
-                System.out.println("Recurso '" + criterioEliminar + "' con ID " + recurso.getId() + " eliminado.");
-            } else {
-                System.out.println("No se pudo eliminar el recurso.");
-            }
-        } else {
-            System.out.println("No se encontró el recurso para eliminar con el criterio '" + criterioEliminar + "'.");
-        }
-
-        System.out.println("\n5. LISTANDO TODOS LOS RECURSOS");
-        List<Recurso> todosLosRecursos = servicio.listarTodos();
-        if (!todosLosRecursos.isEmpty()) {
-            todosLosRecursos.forEach(System.out::println);
-        } else {
-            System.out.println("No hay recursos en la biblioteca.");
-        }
+        // ================= LISTAR =================
+        System.out.println("\n4. LISTANDO TODOS LOS RECURSOS");
+        servicio.listarTodos().forEach(System.out::println);
     }
 }

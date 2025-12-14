@@ -5,7 +5,6 @@
     <title>Biblioteca – Recursos</title>
 
     <style>
-        /* Fondo estilo neon */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -19,7 +18,6 @@
             text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
         }
 
-        /* Botones neon */
         button {
             margin-right: 10px;
             padding: 10px 20px;
@@ -45,7 +43,6 @@
             text-align: center;
         }
 
-        /* Tabla neon */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -75,28 +72,29 @@
 </head>
 <body>
 
-    <h1>Listado de Recursos</h1>
+<h1>Biblioteca Nocturna</h1>
 
-    <div class="botones">
-        <button onclick="location.href='agregar_libro.html'">Agregar Libro</button>
-        <button onclick="location.href='agrgar_periodico.html'">Agregar Periódico</button>
-        <button onclick="location.href='agregar_computador.html'">Agregar Computador</button>
-    </div>
+<div class="botones">
+    <button onclick="location.href='agregar_libro.html'">Agregar Libro</button>
+    <button onclick="location.href='agrgar_periodico.html'">Agregar Periódico</button>
+    <button onclick="location.href='agregar_computador.html'">Agregar Computador</button>
+</div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tipo</th>
-                <th>Nombre</th>
-                <th>Disponible</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tablaRecursos"></tbody>
-    </table>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Fecha Registro</th> <!-- ✅ NUEVO -->
+            <th>Disponible</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tablaRecursos"></tbody>
+</table>
 
-    <script src="js/index.js"></script>
+<script src="js/index.js"></script>
 
 </body>
 </html>

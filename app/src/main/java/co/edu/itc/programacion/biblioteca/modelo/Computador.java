@@ -1,14 +1,10 @@
 package co.edu.itc.programacion.biblioteca.modelo;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("COMPUTADOR")
 public class Computador extends Recurso {
-
-    @Id
-    private Integer id;
 
     @Column("MARCA")
     private String marca;
@@ -19,6 +15,12 @@ public class Computador extends Recurso {
     @Column("TIPO")
     private TipoComputador tipo;
 
+    // 🔥 Constructor vacío OBLIGATORIO para Spring
+    public Computador() {
+        super(null, null);
+    }
+
+    // Constructor completo
     public Computador(Integer id, String nombre, String marca, String modelo, TipoComputador tipo) {
         super(id, nombre);
         this.marca = marca;
@@ -26,6 +28,7 @@ public class Computador extends Recurso {
         this.tipo = tipo;
     }
 
+    // Getters
     public String getMarca() {
         return marca;
     }
@@ -36,6 +39,19 @@ public class Computador extends Recurso {
 
     public TipoComputador getTipo() {
         return tipo;
+    }
+
+    // Setters (recomendados para Spring Data)
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setTipo(TipoComputador tipo) {
+        this.tipo = tipo;
     }
 
     @Override

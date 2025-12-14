@@ -1,4 +1,4 @@
-const API_URL = "/api/computadores";
+const API_URL = "/api/computadores"; // Endpoint correcto
 
 document.getElementById("formcomputador").addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -10,21 +10,28 @@ document.getElementById("formcomputador").addEventListener("submit", async funct
     const computador = {
         nombre: nombre,
         marca: marca,
-        modelo: modelo
+        modelo: modelo,
+        descripcion: "" // aunque tu DTO actual lo ignora, mejor incluirlo por si acaso
     };
 
-    const resp = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(computador)
-    });
+    try {
+        const resp = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(computador)
+        });
 
-    if (resp.ok) {
+        if (!resp.ok) {
+            throw new Error("No se pudo guardar");
+        }
+
         alert("Computador registrado correctamente 💻✨");
         document.getElementById("formcomputador").reset();
-    } else {
+
+    } catch (error) {
+        console.error(error);
         alert("Error al registrar el computador");
     }
 });

@@ -4,16 +4,16 @@ import java.time.LocalDate;
 
 public class RecursoRepresentacion {
 
-    private final Integer id;
-    private final String nombre;
-    private final LocalDate fechaRegistro;
-    private final String tipoRecurso;
+    private Integer id;
+    private String nombre;
+    private LocalDate fechaRegistro;
+    private String tipo;
 
-    public RecursoRepresentacion(Integer id, String nombre, LocalDate fechaRegistro, String tipoRecurso) {
+    public RecursoRepresentacion(Integer id, String nombre, LocalDate fechaRegistro, String tipo) {
         this.id = id;
         this.nombre = nombre;
         this.fechaRegistro = fechaRegistro;
-        this.tipoRecurso = tipoRecurso;
+        this.tipo = tipo;
     }
 
     public Integer getId() {
@@ -28,7 +28,7 @@ public class RecursoRepresentacion {
         return fechaRegistro;
     }
 
-    public String getTipoRecurso() {
-        return tipoRecurso;
+    public String getTipo() {
+        return tipo;
     }
 }
